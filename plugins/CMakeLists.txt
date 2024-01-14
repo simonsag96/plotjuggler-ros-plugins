@@ -25,7 +25,6 @@ SET( COMMON_SRC
    )
 
 #############
-find_package(tum_msgs)
 
 if(COMPILING_WITH_CATKIN)
 
@@ -48,21 +47,20 @@ if(COMPILING_WITH_CATKIN)
         ${Qt5Xml_LIBRARIES}
         ${catkin_LIBRARIES}
         ros_type_introspection_static
-        tum_msgs
     )
 
     #########
     add_library( DataLoadROS SHARED
         DataLoadROS/dataload_ros.cpp)
-    target_link_libraries( DataLoadROS  commonROS)
+    target_link_libraries( DataLoadROS)
     #############
     add_library( DataStreamROS SHARED
         DataStreamROS/datastream_ROS.cpp )
-    target_link_libraries( DataStreamROS  commonROS )
+    target_link_libraries( DataStreamROS  commonROS)
     #############
     add_library( RosTopicPublisher SHARED
         TopicPublisherROS/statepublisher_rostopic.cpp)
-    target_link_libraries( RosTopicPublisher commonROS )
+    target_link_libraries( RosTopicPublisher commonROS)
     #############
     QT5_WRAP_UI ( ROSOUT_UI RosoutPublisher/logwidget.ui )
     add_library( RosoutPublisher SHARED ${ROSOUT_UI}
@@ -71,7 +69,7 @@ if(COMPILING_WITH_CATKIN)
         RosoutPublisher/logwidget.cpp
         RosoutPublisher/modelfilter.cpp
         )
-    target_link_libraries( RosoutPublisher commonROS )
+    target_link_libraries( RosoutPublisher commonROS)
 #######################################################################
 elseif(COMPILING_WITH_AMENT)
 
@@ -111,7 +109,6 @@ elseif(COMPILING_WITH_AMENT)
         ${Qt5Widgets_LIBRARIES}
         ${Qt5Xml_LIBRARIES}
         fastcdr
-        tum_msgs
        )
     ament_target_dependencies( commonROS ${AMENT_DEPENDENCIES})
 

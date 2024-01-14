@@ -22,6 +22,7 @@ if( CATKIN_DEVEL_PREFIX OR catkin_FOUND OR CATKIN_BUILD_BINARY_PACKAGE)
         nav_msgs
         sensor_msgs
         plotjuggler_msgs
+        tum_msgs
        #  pal_statistics_msgs
         plotjuggler )
 
@@ -49,6 +50,7 @@ elseif( DEFINED ENV{AMENT_PREFIX_PATH})
     find_package(fastcdr REQUIRED)
     find_package(Boost REQUIRED)
     find_package(plotjuggler_msgs REQUIRED)
+    find_package(tum_msgs REQUIRED)
     find_package(tf2_msgs REQUIRED)
     find_package(tf2_ros REQUIRED)
     find_package(plotjuggler REQUIRED)
