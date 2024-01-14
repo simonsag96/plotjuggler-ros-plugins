@@ -25,6 +25,7 @@ SET( COMMON_SRC
    )
 
 #############
+find_package(tum_msgs)
 
 if(COMPILING_WITH_CATKIN)
 
@@ -46,7 +47,9 @@ if(COMPILING_WITH_CATKIN)
         ${Qt5Widgets_LIBRARIES}
         ${Qt5Xml_LIBRARIES}
         ${catkin_LIBRARIES}
-        ros_type_introspection_static )
+        ros_type_introspection_static
+        tum_msgs
+    )
 
     #########
     add_library( DataLoadROS SHARED
@@ -94,6 +97,7 @@ elseif(COMPILING_WITH_AMENT)
         nav_msgs
         diagnostic_msgs
         plotjuggler_msgs
+        tum_msgs
      #    pal_statistics_msgs
         tf2_msgs
         tf2_ros
@@ -107,6 +111,7 @@ elseif(COMPILING_WITH_AMENT)
         ${Qt5Widgets_LIBRARIES}
         ${Qt5Xml_LIBRARIES}
         fastcdr
+        tum_msgs
        )
     ament_target_dependencies( commonROS ${AMENT_DEPENDENCIES})
 
