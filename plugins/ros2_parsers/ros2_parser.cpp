@@ -6,6 +6,7 @@
 #include "plotjuggler_msgs.h"
 #include "diagnostic_msg.h"
 #include "pj_statistics_msg.h"
+#include "tum_debug_msg.h"
 //  #include "pal_statistics_msg.h"
 
 #include <boost/algorithm/string/predicate.hpp>
@@ -160,6 +161,13 @@ void Ros2CompositeParser::registerMessageType(const std::string& topic_name,
   {
     parser.reset(new PJ_StatisticsValuesParser(topic_name, _plot_data));
   }
+  else if (type == "tum_msgs/TUMDebugValues") {
+    parser.reset(new TUMDebugValuesMsgParser(topic_name, _plot_data));
+  }
+  else if (type == "tum_msgs/TUMDebugSignalNames") {
+    parser.reset(new TUMDebugSignalNamesMsgParser(topic_name, _plot_data));
+  }
+// FIXME: PARSER Here can i register the new parser.
 //  else if (type == "pal_statistics_msgs/StatisticsNames")
 //  {
 //    parser.reset(new PAL_StatisticsNamesParser(topic_name, _plot_data));
