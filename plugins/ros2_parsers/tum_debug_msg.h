@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "ros2_parser.h"
@@ -10,9 +11,6 @@
 #include "tum_msgs/msg/tum_debug_values.hpp"
 class DebugConfigStorage
 {
-private:
-  std::map<std::string, std::vector<std::string>> debug_definitions_;
-
 public:
   static DebugConfigStorage & getInstance()
   {
@@ -36,6 +34,7 @@ public:
   }
 
 private:
+  std::map<std::string, std::vector<std::string>> debug_definitions_;
   DebugConfigStorage() {}
   DebugConfigStorage(DebugConfigStorage const &);
   void operator=(DebugConfigStorage const &);
@@ -59,6 +58,7 @@ public:
     }
     if (!_initialized) {
       _initialized = true;
+      std::cout << "Parsing TUM Debug Signals: " << debug_channel_name_ << std::endl;
       for (auto & signal_name : debug_config_storage_.get_definition(debug_channel_name_)) {
         // Create the individual time series objects
         _data.push_back(&getSeries(debug_channel_name_ + "/" + signal_name));
@@ -100,8 +100,6 @@ public:
     if (!_initialized) {
       _initialized = true;
       debug_config_storage_.register_definition(debug_channel_name_, msg.names);
-      std::cout << "Registered definition for TUM debug channel parsing: " << debug_channel_name_
-                << std::endl;
     }
   }
 
